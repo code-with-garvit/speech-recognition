@@ -1,0 +1,23 @@
+{
+  "name": "speech-recognition",
+  "version": "1.0.0",
+  "description": "",
+  "main": "accent.js",
+  "scripts": {
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-with-garvit/speech-recognition.git"
+  },
+  "author": "Garvit Motwani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/code-with-garvit/speech-recognition/issues"
+  },
+  "homepage": "https://github.com/code-with-garvit/speech-recognition#readme",
+  "dependencies": {
+    "puppeteer": "^4.0.1",
+    "puppeteer-core": "^4.0.1"
+  }
+}

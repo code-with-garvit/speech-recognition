@@ -8,9 +8,6 @@ let paragraph = document.createElement('p');
 let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
-
-
-
 icon.addEventListener('click', () => {
   sound.play();
   dictate();
@@ -23,9 +20,12 @@ const dictate = () => {
     paragraph.textContent = speechToText;
     speechToText.voice = voices[2];
     if (event.results[0].isFinal) {
-      
       if (speechToText.includes('what is the time')) {
           speak(getTime);
+      };
+
+      if (speechToText.includes('translate')) {
+       window.open('./accent.html')
       };
       
       if (speechToText.includes('what is today\'s date')) {
@@ -49,12 +49,28 @@ const dictate = () => {
         speak(nothing);
       }
 
-      if(speechToText.includes('I want to compose an email') || speechToText.includes('write an email')){
+      if(speechToText.includes('email')){
         window.open('./email.html');
       }
 
       if(speechToText.includes('search Google for')){
         searchGoogle(speechToText);
+      }
+
+      if(speechToText.includes('search Wikipedia for')){
+        searchWiki(speechToText);
+      }
+
+      if(speechToText.includes('search Amazon for')){
+        searchAmazon(speechToText);
+      }
+
+      if(speechToText.includes('search Flipkart for')){
+        searchFlipkart(speechToText);
+      }
+
+      if(speechToText.includes('open')){
+        openSite(speechToText);
       }
     }
   }
@@ -65,6 +81,9 @@ const speak = (action) => {
   synth.speak(utterThis);
 };
 
+const notUnderstood = () => {
+ return "I cannot understand what you are saying.";
+}
 
 
 const changeBG = (speech) => {
@@ -100,8 +119,28 @@ const getDate = () => {
 };
 
 const searchGoogle = (speech) => {
-  let word = speech.split('search Google for');
+  let word = speech.slice(18);
   return window.open(`https://www.google.com/search?q=${word}`);
+}
+
+const searchFlipkart = (speech) => {
+  let word = speech.slice(20);
+  return window.open(`https://www.flipkart.com/search?q=${word}`);
+}
+
+const searchAmazon = (speech) => {
+  let word = speech.slice(18);
+  return window.open(`https://www.amazon.in/s?k=${word}`);
+}
+
+const searchWiki = (speech) => {
+  let query = speech.slice(20);
+  return window.open(`https://en.wikipedia.org/wiki/${query}`)
+}
+
+const openSite = (speech) => {
+  let query = speech.slice(5);
+  return window.open(`http://${query}`)
 }
 
 const getTheWeather = (speech) => {
