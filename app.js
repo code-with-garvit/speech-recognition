@@ -50,26 +50,37 @@ const dictate = () => {
       }
 
       if(speechToText.includes('email')){
+        speak(okay);
         window.open('./email.html');
       }
 
       if(speechToText.includes('search Google for')){
+        speak(okay);
         searchGoogle(speechToText);
       }
 
       if(speechToText.includes('search Wikipedia for')){
+        speak(okay);
         searchWiki(speechToText);
       }
 
       if(speechToText.includes('search Amazon for')){
+        speak(okay);
         searchAmazon(speechToText);
       }
 
       if(speechToText.includes('search Flipkart for')){
+        speak(okay);
         searchFlipkart(speechToText);
       }
 
+      if(speechToText.includes('search YouTube for')){
+        speak(okay);
+        searchYouTube(speechToText);
+      }
+
       if(speechToText.includes('open')){
+        speak(okay);
         openSite(speechToText);
       }
     }
@@ -80,10 +91,6 @@ const speak = (action) => {
   utterThis = new SpeechSynthesisUtterance(action());
   synth.speak(utterThis);
 };
-
-const notUnderstood = () => {
- return "I cannot understand what you are saying.";
-}
 
 
 const changeBG = (speech) => {
@@ -118,9 +125,18 @@ const getDate = () => {
   return `today is ${time.toLocaleDateString()}`;
 };
 
+const okay = () => {
+  return 'Sure';
+}
+
 const searchGoogle = (speech) => {
   let word = speech.slice(18);
   return window.open(`https://www.google.com/search?q=${word}`);
+}
+
+const searchYouTube = (speech) => {
+  let word = speech.slice(18);
+  return window.open(`https://www.youtube.com/results?search_query=${word}`);
 }
 
 const searchFlipkart = (speech) => {
